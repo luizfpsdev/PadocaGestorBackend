@@ -4,7 +4,7 @@ namespace PadocaGestor.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ReceitaController : ControllerBase
+    public class FuncionarioController : ControllerBase
     {
 
         [HttpGet]
