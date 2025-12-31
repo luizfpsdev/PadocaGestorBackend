@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="PadocaGestor.csproj" />
+  <Project Path="../PadocaGestor.Application/PadocaGestor.Application.csproj" Id="1505220d-88ba-40a7-8066-8e2b2d0bfd98" />
+  <Project Path="../PadocaGestor.Domain/PadocaGestor.Domain.csproj" Id="6c2c5498-fbad-4886-8f23-50ddb4c6756f" />
+  <Project Path="../PadocaGestor.Infrastructure/PadocaGestor.Infrastructure.csproj" Id="13206dab-3191-4f13-a3a4-3f741c649578" />
+  <Project Path="PadocaGestor.Api.csproj" />
 </Solution>
