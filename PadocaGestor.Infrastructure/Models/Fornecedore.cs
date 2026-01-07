@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PadocaGestor.Infrastructure.Models;
 
-public partial class Fornecedore
+public partial class Fornecedor
 {
     public long IdFornecedor { get; set; }
 

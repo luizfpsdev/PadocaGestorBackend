@@ -17,7 +17,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference(o => o.WithTheme(ScalarTheme.DeepSpace));
+    app.MapScalarApiReference(o => o.WithTheme(ScalarTheme.Mars));
 }
 
 app.UseHttpsRedirection();

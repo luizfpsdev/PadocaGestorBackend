@@ -16,7 +16,7 @@ public partial class PadocaContext : DbContext
     {
     }
 
-    public virtual DbSet<Fornecedore> Fornecedores { get; set; }
+    public virtual DbSet<Fornecedor> Fornecedores { get; set; }
 
     public virtual DbSet<Funcionario> Funcionarios { get; set; }
 
@@ -37,32 +37,6 @@ public partial class PadocaContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(PadocaContext).Assembly);
-        modelBuilder.Entity<Fornecedore>(entity =>
-        {
-            entity.HasKey(e => e.IdFornecedor).HasName("fornecedores_pk");
-
-            entity.ToTable("fornecedores");
-
-            entity.Property(e => e.IdFornecedor)
-                .UseIdentityAlwaysColumn()
-                .HasColumnName("id_fornecedor");
-            entity.Property(e => e.Ativo).HasColumnName("ativo");
-            entity.Property(e => e.Cnpj)
-                .HasMaxLength(15)
-                .HasColumnName("cnpj");
-            entity.Property(e => e.Endereco)
-                .HasColumnType("character varying")
-                .HasColumnName("endereco");
-            entity.Property(e => e.Nome)
-                .HasMaxLength(255)
-                .HasColumnName("nome");
-            entity.Property(e => e.Observacao)
-                .HasMaxLength(255)
-                .HasColumnName("observacao");
-            entity.Property(e => e.Telefone)
-                .HasMaxLength(20)
-                .HasColumnName("telefone");
-        });
 
         modelBuilder.Entity<Funcionario>(entity =>
         {
