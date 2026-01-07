@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PadocaGestor.Infrastructure.Models;
+﻿namespace PadocaGestor.Infrastructure.Models;
 
 public partial class Produto
 {
