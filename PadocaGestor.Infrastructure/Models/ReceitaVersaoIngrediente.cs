@@ -10,7 +10,7 @@ public partial class ReceitaVersaoIngrediente
 
     public string? Unidade { get; set; }
 
-    public virtual ReceitasVersao IdProduto1 { get; set; } = null!;
+    public virtual ReceitasVersao ReceitaVersao { get; set; } = null!;
 
     public virtual Produto IdProdutoNavigation { get; set; } = null!;
 }

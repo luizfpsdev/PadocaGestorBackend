@@ -25,7 +25,7 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("id_produto_foreign_key");
 
-            builder.HasOne(d => d.IdProduto1).WithMany(p => p.ReceitaVersaoIngredientes)
+            builder.HasOne(d => d.ReceitaVersao).WithMany(p => p.ReceitaVersaoIngredientes)
                 .HasForeignKey(d => d.IdProduto)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("id_receita_versao_foreign_key");
