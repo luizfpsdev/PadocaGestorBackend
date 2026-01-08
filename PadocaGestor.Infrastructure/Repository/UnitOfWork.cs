@@ -1,8 +1,5 @@
 ﻿using PadocaGestor.Infrastructure.Database;
 using PadocaGestor.Infrastructure.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PadocaGestor.Infrastructure.Repository
 {
@@ -16,8 +13,14 @@ namespace PadocaGestor.Infrastructure.Repository
 
         public PadocaContext Context { get; }
 
-        private Repository<Fornecedor> FornecedorRepository;
-        private Repository<Funcionario> FuncionarioRepository;
+        private Repository<Fornecedor> fornecedorRepository;
+        private Repository<Funcionario> funcionarioRepository;
+        private Repository<Ingrediente> ingredienteRepository;
+        private Repository<Marca> marcaRepository;
+        private Repository<Produto> produtoRepository;
+        private Repository<ProdutoPreco> produtPrecoRepository;
+        private Repository<Receita> receitaRepository;
+        private Repository<ReceitasVersao> receitasVersaoRepository;
 
         public void Dispose()
         {
