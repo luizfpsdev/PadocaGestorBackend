@@ -38,6 +38,22 @@ namespace PadocaGestor.Infrastructure.Repository
             }
         }
 
+        public Repository<Ingrediente> IngredienteRepository
+        {
+            get
+            {
+                return ingredienteRepository == null ? new Repository<Ingrediente>(Context) : ingredienteRepository;
+            }
+        }
+
+        public Repository<Marca> MarcaRepository
+        {
+            get
+            {
+                return marcaRepository == null ? new Repository<Marca>(Context) : marcaRepository;
+            }
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
