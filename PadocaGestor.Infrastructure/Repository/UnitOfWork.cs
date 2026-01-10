@@ -54,6 +54,35 @@ namespace PadocaGestor.Infrastructure.Repository
             }
         }
 
+        public Repository<Produto> ProdutoRepository
+        {
+            get
+            {
+                return produtoRepository == null ? new Repository<Produto>(Context) : produtoRepository;
+            }
+        }
+        public Repository<ProdutoPreco> ProdutoPrecoRepository
+        {
+            get
+            {
+                return produtPrecoRepository == null ? new Repository<ProdutoPreco>(Context) : produtPrecoRepository;
+            }
+        }
+        public Repository<Receita> ReceitaRepository
+        {
+            get
+            {
+                return receitaRepository == null ? new Repository<Receita>(Context) : receitaRepository;
+            }
+        }
+        public Repository<ReceitasVersao> ReceitasVersaoRepository
+        {
+            get
+            {
+                return receitasVersaoRepository == null ? new Repository<ReceitasVersao>(Context) : receitasVersaoRepository;
+            }
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
