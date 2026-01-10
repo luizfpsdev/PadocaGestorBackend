@@ -22,6 +22,22 @@ namespace PadocaGestor.Infrastructure.Repository
         private Repository<Receita> receitaRepository;
         private Repository<ReceitasVersao> receitasVersaoRepository;
 
+        public Repository<Fornecedor> FornecedorRepository
+        {
+            get
+            {
+                return fornecedorRepository == null? new Repository<Fornecedor>(Context): fornecedorRepository; 
+            }
+        }
+
+        public Repository<Funcionario> FuncionarioRepository
+        {
+            get
+            {
+                return funcionarioRepository == null ? new Repository<Funcionario>(Context) : funcionarioRepository;
+            }
+        }
+
         public void Dispose()
         {
             throw new NotImplementedException();
