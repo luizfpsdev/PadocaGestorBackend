@@ -5,9 +5,7 @@ namespace PadocaGestor.Infrastructure.Database;
 
 public partial class PadocaContext : DbContext
 {
-    public PadocaContext()
-    {
-    }
+
     public PadocaContext(DbContextOptions<PadocaContext> options)
         : base(options)
     {
