@@ -32,7 +32,12 @@ app.UseAuthorization();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference(o => o.WithTheme(ScalarTheme.Mars));
+    app.MapScalarApiReference(o =>
+    {
+        o.WithTheme(ScalarTheme.Saturn);
+        o.HideClientButton = true;
+        o.HideDarkModeToggle = true;
+    });
 }
 
 app.UseHttpsRedirection();
