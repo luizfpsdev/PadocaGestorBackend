@@ -30,6 +30,8 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e => e.Telefone)
                 .HasMaxLength(20)
                 .HasColumnName("telefone");
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("client_id");
         }
     }
 }

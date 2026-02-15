@@ -27,6 +27,7 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .HasForeignKey(d => d.IdReceitas)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("receitas_fk");
+            
         }
     }
 }

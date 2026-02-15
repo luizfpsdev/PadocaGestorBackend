@@ -35,6 +35,9 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .HasForeignKey(d => d.IdProdutoProduto)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("produto_fk");
+            
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("client_id");
         }
     }
 }

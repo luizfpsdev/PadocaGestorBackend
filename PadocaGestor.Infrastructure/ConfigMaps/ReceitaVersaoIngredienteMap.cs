@@ -29,6 +29,8 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .HasForeignKey(d => d.IdProduto)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("id_receita_versao_foreign_key");
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("client_id");
         }
     }
 }

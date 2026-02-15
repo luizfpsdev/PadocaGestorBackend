@@ -30,6 +30,8 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e => e.Rendimento)
                 .HasPrecision(10, 4)
                 .HasColumnName("rendimento");
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("client_id");
         }
     }
 }

@@ -18,6 +18,8 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e => e.Nome)
                 .HasMaxLength(100)
                 .HasColumnName("nome");
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("client_id");
         }
     }
 }

@@ -28,6 +28,9 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Produtos)
                 .HasForeignKey(d => d.IdMarca)
                 .HasConstraintName("id_marca_foreign_key");
+            
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("client_id");
         }
     }
 }
