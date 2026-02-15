@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PadocaGestor.Controllers
+namespace PadocaGestor.Api.Controllers
 {
     [Authorize]
     [ApiController]

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using PadocaGestor.Infrastructure.Database;
 using Scalar.AspNetCore;
 
@@ -14,8 +15,14 @@ builder.Services.AddAuthentication(typeAuthentication)
 {
     opt.RequireHttpsMetadata = false; //TODO: ajustar para false apenas se for ambiente de desenvolvimento
     opt.SaveToken = true;
-    opt.Authority = builder.Configuration.GetSection("Authentication")["Authority"];
-    opt.Audience = builder.Configuration.GetSection("Authentication")["Audience"];
+    opt.Authority = builder.Configuration.GetSection("AuthConfigs")["AuthServer"];
+    opt.Audience = builder.Configuration.GetSection("AuthConfigs")["ClientId"];
+    
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateAudience = false,
+        ValidIssuer = builder.Configuration.GetSection("AuthConfigs")["AuthServer"]
+    };
 });
 
 builder.Services.AddControllers();
@@ -25,8 +32,7 @@ builder.Services.AddDbContext<PadocaContext>(opt=> opt.UseNpgsql(builder.Configu
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -42,6 +48,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
