@@ -13,8 +13,6 @@ public partial class UsuarioCliente
 
     public string IdUsuario { get; set; } = null!;
     
-    
-
     public virtual Cliente Cliente { get; set; } = null!;
 
     public virtual Usuario Usuario { get; set; } = null!;
