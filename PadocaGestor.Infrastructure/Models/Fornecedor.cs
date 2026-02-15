@@ -15,6 +15,8 @@ public partial class Fornecedor
     public string? Endereco { get; set; }
 
     public string? Telefone { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual ICollection<ProdutoPreco> ProdutoPrecos { get; set; } = new List<ProdutoPreco>();
 }

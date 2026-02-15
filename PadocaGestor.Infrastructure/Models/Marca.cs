@@ -7,6 +7,8 @@ public partial class Marca
     public string Nome { get; set; } = null!;
 
     public bool Ativo { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 }

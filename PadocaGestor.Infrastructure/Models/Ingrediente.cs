@@ -7,6 +7,8 @@ public partial class Ingrediente
     public string? Nome { get; set; }
 
     public bool Ativo { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual ICollection<Produto> Produtos { get; set; } = new List<Produto>();
 }

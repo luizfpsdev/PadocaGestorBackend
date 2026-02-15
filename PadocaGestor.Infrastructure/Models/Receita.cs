@@ -13,6 +13,8 @@ public partial class Receita
     public long IdEmpresa { get; set; }
 
     public decimal? Rendimento { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual ICollection<ReceitasVersao> ReceitasVersaos { get; set; } = new List<ReceitasVersao>();
 }

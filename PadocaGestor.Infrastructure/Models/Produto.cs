@@ -9,6 +9,8 @@ public partial class Produto
     public string? Descricao { get; set; }
 
     public long? IdMarca { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual Ingrediente IdIngredienteNavigation { get; set; } = null!;
 

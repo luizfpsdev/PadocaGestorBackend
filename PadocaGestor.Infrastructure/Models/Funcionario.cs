@@ -7,4 +7,6 @@ public partial class Funcionario
     public string? Nome { get; set; }
 
     public string? Telefone { get; set; }
+    
+    public long IdCliente { get; set; }
 }

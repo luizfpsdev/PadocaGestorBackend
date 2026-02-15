@@ -12,6 +12,8 @@ public partial class UsuarioCliente
     public long IdCliente { get; set; }
 
     public string IdUsuario { get; set; } = null!;
+    
+    
 
     public virtual Cliente Cliente { get; set; } = null!;
 

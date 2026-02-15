@@ -13,6 +13,8 @@ public partial class ProdutoPreco
     public long IdFornecedor { get; set; }
 
     public long? IdProdutoProduto { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual Fornecedor IdFornecedorNavigation { get; set; } = null!;
 

@@ -9,6 +9,8 @@ public partial class ReceitaVersaoIngrediente
     public decimal? Quantidade { get; set; }
 
     public string? Unidade { get; set; }
+    
+    public long IdCliente { get; set; }
 
     public virtual ReceitasVersao ReceitaVersao { get; set; } = null!;
 
