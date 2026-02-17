@@ -9,4 +9,5 @@ public partial class Usuario
     public DateTime CriadoEm { get; set; }
 
     public virtual UsuarioCliente? UsuarioCliente { get; set; }
+    public string Email { get; set; }
 }

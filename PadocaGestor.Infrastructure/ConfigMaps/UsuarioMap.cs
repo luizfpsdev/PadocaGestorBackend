@@ -14,10 +14,15 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e => e.Id)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
+            
             builder.Property(e => e.Ativo).HasColumnName("ativo");
+            
             builder.Property(e => e.CriadoEm)
                  .HasColumnType("timestamp without time zone")
                 .HasColumnName("criado_em");
+
+            builder.Property(e => e.Email)
+                .HasColumnType("email");
         }
     }
 }
