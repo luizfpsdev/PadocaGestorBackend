@@ -18,7 +18,10 @@ builder.Services.AddAuthentication(typeAuthentication)
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<PadocaContext>(opt=> opt.UseNpgsql(builder.Configuration.GetConnectionString("Padoca")));
+builder.Services.AddDbContext<PadocaContext>(opt=>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("Padoca"),b => b.MigrationsAssembly("PadocaGestor.Infrastructure"));
+});
 
 var app = builder.Build();
 

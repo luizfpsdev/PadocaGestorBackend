@@ -12,7 +12,7 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.ToTable("usuario");
 
             builder.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
+                .ValueGeneratedNever()
                 .HasColumnName("id");
             
             builder.Property(e => e.Ativo).HasColumnName("ativo");
