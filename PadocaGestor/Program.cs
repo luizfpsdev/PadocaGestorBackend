@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using PadocaGestor.Application.Abstrations;
+using PadocaGestor.Infrastructure;
 using PadocaGestor.Infrastructure.Database;
 using Scalar.AspNetCore;
 
@@ -17,11 +20,15 @@ builder.Services.AddAuthentication(typeAuthentication)
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<PadocaContext>(opt=>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("Padoca"),b => b.MigrationsAssembly("PadocaGestor.Infrastructure"));
 });
+
+//Registro de serviços
+builder.Services.TryAddScoped<IUsuarioAtual,UsuarioAtual>();
 
 var app = builder.Build();
 

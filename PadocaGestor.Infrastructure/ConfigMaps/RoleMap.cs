@@ -9,14 +9,14 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
         {
             builder.HasKey(e => e.Id);
 
-            builder.ToTable("Roles");
+            builder.ToTable("roles");
 
             builder.Property(e => e.Id)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
 
             builder.Property(e => e.Role)
-                .HasColumnType("Role");
+                .HasColumnType("role");
         }
     }
 }
