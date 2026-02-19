@@ -18,8 +18,10 @@ public class UsuarioAtual : IUsuarioAtual
     {
         return new UsuarioLogado
         {
-            Id = Guid.Parse(_httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value!),
-            Email = _httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value!
+            Id = Guid.Parse(_httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value!),
+            Email = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value!,
+            Nome = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Name)?.Value
+            
         };
     }
 }
