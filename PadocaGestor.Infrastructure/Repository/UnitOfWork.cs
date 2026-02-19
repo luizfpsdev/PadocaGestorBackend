@@ -13,79 +13,36 @@ namespace PadocaGestor.Infrastructure.Repository
 
         public PadocaContext Context { get; }
 
-        private Repository<Fornecedor> fornecedorRepository;
-        private Repository<Funcionario> funcionarioRepository;
-        private Repository<Ingrediente> ingredienteRepository;
-        private Repository<Marca> marcaRepository;
-        private Repository<Produto> produtoRepository;
-        private Repository<ProdutoPreco> produtPrecoRepository;
-        private Repository<Receita> receitaRepository;
-        private Repository<ReceitasVersao> receitasVersaoRepository;
+        private Repository<Fornecedor>? _fornecedorRepository = null;
+        private Repository<Funcionario>? _funcionarioRepository= null;
+        private Repository<Ingrediente>? _ingredienteRepository= null;
+        private Repository<Marca>? _marcaRepository= null;
+        private Repository<Produto>? _produtoRepository= null;
+        private Repository<ProdutoPreco>? _produtPrecoRepository= null;
+        private Repository<Receita>? _receitaRepository= null;
+        private Repository<ReceitasVersao>? _receitasVersaoRepository= null;
+        private Repository<UsuarioCliente>? _usuarioClienteRepository= null;
 
-        public Repository<Fornecedor> FornecedorRepository
-        {
-            get
-            {
-                return fornecedorRepository == null? new Repository<Fornecedor>(Context): fornecedorRepository; 
-            }
-        }
+        public Repository<Fornecedor> FornecedorRepository => _fornecedorRepository ?? new Repository<Fornecedor>(Context);
 
-        public Repository<Funcionario> FuncionarioRepository
-        {
-            get
-            {
-                return funcionarioRepository == null ? new Repository<Funcionario>(Context) : funcionarioRepository;
-            }
-        }
+        public Repository<Funcionario> FuncionarioRepository => _funcionarioRepository ?? new Repository<Funcionario>(Context);
 
-        public Repository<Ingrediente> IngredienteRepository
-        {
-            get
-            {
-                return ingredienteRepository == null ? new Repository<Ingrediente>(Context) : ingredienteRepository;
-            }
-        }
+        public Repository<Ingrediente> IngredienteRepository => _ingredienteRepository ?? new Repository<Ingrediente>(Context);
 
-        public Repository<Marca> MarcaRepository
-        {
-            get
-            {
-                return marcaRepository == null ? new Repository<Marca>(Context) : marcaRepository;
-            }
-        }
+        public Repository<Marca> MarcaRepository => _marcaRepository ?? new Repository<Marca>(Context);
 
-        public Repository<Produto> ProdutoRepository
-        {
-            get
-            {
-                return produtoRepository == null ? new Repository<Produto>(Context) : produtoRepository;
-            }
-        }
-        public Repository<ProdutoPreco> ProdutoPrecoRepository
-        {
-            get
-            {
-                return produtPrecoRepository == null ? new Repository<ProdutoPreco>(Context) : produtPrecoRepository;
-            }
-        }
-        public Repository<Receita> ReceitaRepository
-        {
-            get
-            {
-                return receitaRepository == null ? new Repository<Receita>(Context) : receitaRepository;
-            }
-        }
-        public Repository<ReceitasVersao> ReceitasVersaoRepository
-        {
-            get
-            {
-                return receitasVersaoRepository == null ? new Repository<ReceitasVersao>(Context) : receitasVersaoRepository;
-            }
-        }
+        public Repository<Produto> ProdutoRepository => _produtoRepository ?? new Repository<Produto>(Context);
+
+        public Repository<ProdutoPreco> ProdutoPrecoRepository => _produtPrecoRepository ?? new Repository<ProdutoPreco>(Context);
+
+        public Repository<Receita> ReceitaRepository => _receitaRepository ?? new Repository<Receita>(Context);
+
+        public Repository<ReceitasVersao> ReceitasVersaoRepository => _receitasVersaoRepository ?? new Repository<ReceitasVersao>(Context);
+        public Repository<UsuarioCliente> UsuarioClienteRepository => _usuarioClienteRepository ?? new Repository<UsuarioCliente>(Context);
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

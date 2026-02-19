@@ -21,6 +21,8 @@ namespace PadocaGestor.Api.Controllers
         {
             var usuario = _usuarioAtual.ObterUsuario();
             
+            //TODO: verificar se existe dados na tabela usuario cliente com o id caso não exista quer dizer que é um usuário novo com role de admin e pelo menos trial
+            
             return Ok(usuario);
         }
     }
