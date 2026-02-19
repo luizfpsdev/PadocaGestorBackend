@@ -55,3 +55,17 @@ nunit-*.xml
 .vs
 *.DotSettings.user
 PadocaGestor/.idea/
+
+.idea/
+
+# Rider / ReSharper
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
