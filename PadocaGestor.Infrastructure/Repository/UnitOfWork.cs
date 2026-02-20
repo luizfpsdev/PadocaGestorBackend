@@ -11,7 +11,7 @@ namespace PadocaGestor.Infrastructure.Repository
             Context = context;
         }
 
-        public PadocaContext Context { get; }
+        private PadocaContext Context { get; }
 
         private Repository<Fornecedor>? _fornecedorRepository = null;
         private Repository<Funcionario>? _funcionarioRepository= null;
@@ -39,6 +39,8 @@ namespace PadocaGestor.Infrastructure.Repository
 
         public Repository<ReceitasVersao> ReceitasVersaoRepository => _receitasVersaoRepository ?? new Repository<ReceitasVersao>(Context);
         public Repository<UsuarioCliente> UsuarioClienteRepository => _usuarioClienteRepository ?? new Repository<UsuarioCliente>(Context);
+
+        public async Task CommitAsync() => await Context.SaveChangesAsync();
 
         public void Dispose()
         {

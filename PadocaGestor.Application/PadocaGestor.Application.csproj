@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PadocaGestor.Domain\PadocaGestor.Domain.csproj" />
+    <ProjectReference Include="..\PadocaGestor.Infrastructure\PadocaGestor.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

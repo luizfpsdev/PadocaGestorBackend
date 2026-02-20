@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using PadocaGestor.Api;
 using PadocaGestor.Application;
 using PadocaGestor.Application.Abstractions;
 using PadocaGestor.Application.Abstrations;
@@ -32,6 +33,7 @@ builder.Services.AddDbContext<PadocaContext>(opt=>
 //Registro de serviços
 builder.Services.TryAddScoped<IUsuarioAtual,UsuarioAtual>();
 builder.Services.TryAddScoped<IUsuarioClienteService,UsuarioClienteService>();
+
 
 var app = builder.Build();
 

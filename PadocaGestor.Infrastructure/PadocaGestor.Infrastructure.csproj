@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PadocaGestor.Application\PadocaGestor.Application.csproj" />
+
     <ProjectReference Include="..\PadocaGestor.Domain\PadocaGestor.Domain.csproj" />
   </ItemGroup>
 

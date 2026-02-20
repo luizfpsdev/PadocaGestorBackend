@@ -1,9 +1,8 @@
 using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
 using PadocaGestor.Application.Abstrations;
 using PadocaGestor.Domain;
 
-namespace PadocaGestor.Infrastructure;
+namespace PadocaGestor.Api;
 
 public class UsuarioAtual : IUsuarioAtual
 {
