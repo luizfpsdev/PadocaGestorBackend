@@ -10,4 +10,6 @@ public partial class Usuario
 
     public virtual UsuarioCliente? UsuarioCliente { get; set; }
     public string Email { get; set; }
+    public ICollection<RolesUsuario> RolesUsuario { get; set; }
+  
 }

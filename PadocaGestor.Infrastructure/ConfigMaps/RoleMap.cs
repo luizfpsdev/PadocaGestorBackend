@@ -3,7 +3,7 @@ using PadocaGestor.Infrastructure.Models;
 
 namespace PadocaGestor.Infrastructure.ConfigMaps
 {
-    internal class RoleMa : IEntityTypeConfiguration<Roles>
+    internal class RoleMap : IEntityTypeConfiguration<Roles>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Roles> builder)
         {
@@ -17,6 +17,8 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
 
             builder.Property(e => e.Role)
                 .HasColumnType("role");
+            
+            builder.HasMany<RolesUsuario>(e => e.RolesUsuarios);
         }
     }
 }

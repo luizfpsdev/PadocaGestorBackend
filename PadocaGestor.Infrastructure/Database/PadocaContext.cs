@@ -28,6 +28,8 @@ public partial class PadocaContext : DbContext
     public virtual DbSet<ReceitaVersaoIngrediente> ReceitaVersaoIngredientes { get; set; }
 
     public virtual DbSet<ReceitasVersao> ReceitasVersaos { get; set; }
+    
+    public virtual DbSet<RolesUsuario> RolesUsuarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

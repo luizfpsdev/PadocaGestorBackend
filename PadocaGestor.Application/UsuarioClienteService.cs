@@ -1,5 +1,6 @@
 using PadocaGestor.Application.Abstractions;
 using PadocaGestor.Infrastructure.Database;
+using PadocaGestor.Infrastructure.Models;
 using PadocaGestor.Infrastructure.Repository;
 
 namespace PadocaGestor.Application;
@@ -12,8 +13,33 @@ public class UsuarioClienteService : IUsuarioClienteService
     {
         _unitOfWork = new UnitOfWork(context);
     }
-    public Task<object> ObterUsuarioClienteByUsuarioAsync(Guid? usuarioId)
+    public async Task<object> ObterUsuarioClienteByUsuarioAsync(Guid? usuarioId)
     {
-        return null;
+        var usuarioCliente = (await _unitOfWork.UsuarioClienteRepository.Get(x => x.IdUsuario == usuarioId.ToString())).SingleOrDefault();
+        
+        return usuarioCliente;
+    }
+
+    public async Task CriarUsuarioClienteAsync(Guid? usuarioId,string email)
+    {
+        var usuarioCliente = await ObterUsuarioClienteByUsuarioAsync(usuarioId);
+
+        //caso usuarioCLiente for null então é o primeiro registro e habilitação do periodo trial
+        if (usuarioCliente == null)
+        {
+            usuarioCliente = new UsuarioCliente
+            {
+                Ativo = true,
+                CriadoEm = DateTime.UtcNow,
+                IdUsuario = usuarioId.ToString(),
+                Usuario = new Usuario
+                {
+                    Ativo = true,
+                    CriadoEm = DateTime.UtcNow,
+                    Email = email,
+                   //TODO:adicionar role admin default
+                }
+            };
+        }
     }
 }

@@ -23,6 +23,8 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
 
             builder.Property(e => e.Email)
                 .HasColumnType("email");
+
+            builder.HasMany<RolesUsuario>(e => e.RolesUsuario);
         }
     }
 }
