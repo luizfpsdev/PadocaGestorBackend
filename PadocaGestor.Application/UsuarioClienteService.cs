@@ -37,7 +37,7 @@ public class UsuarioClienteService : IUsuarioClienteService
                     Ativo = true,
                     CriadoEm = DateTime.UtcNow,
                     Email = email,
-                   //TODO:adicionar role admin default
+                   
                 }
             };
         }

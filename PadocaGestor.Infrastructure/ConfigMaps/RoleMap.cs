@@ -12,7 +12,6 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.ToTable("roles");
 
             builder.Property(e => e.Id)
-                .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
 
             builder.Property(e => e.Role)
