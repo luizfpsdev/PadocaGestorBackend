@@ -13,8 +13,8 @@ using PadocaGestor.Infrastructure.Database;
 namespace PadocaGestor.Infrastructure.Migrations
 {
     [DbContext(typeof(PadocaContext))]
-    [Migration("20260220033023_relacionamento-role-usuario")]
-    partial class relacionamentoroleusuario
+    [Migration("20260221222909_baseline")]
+    partial class baseline
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace PadocaGestor.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -230,11 +230,11 @@ namespace PadocaGestor.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("IdProdutoPreco"));
 
                     b.Property<DateTime?>("DataFim")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp")
                         .HasColumnName("data_fim");
 
                     b.Property<DateTime>("DataInicio")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp")
                         .HasColumnName("data_inicio");
 
                     b.Property<long>("IdCliente")
@@ -274,7 +274,7 @@ namespace PadocaGestor.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime?>("DataCriacao")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp")
                         .HasColumnName("data_criacao");
 
                     b.Property<long>("IdCliente")
@@ -357,7 +357,7 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasColumnName("ativo");
 
                     b.Property<DateTime?>("DataVersao")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp")
                         .HasColumnName("data_versao");
 
                     b.Property<long?>("IdReceitas")
@@ -379,7 +379,7 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -418,12 +418,13 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasColumnName("ativo");
 
                     b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp")
                         .HasColumnName("criado_em");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("email");
+                        .HasColumnType("email")
+                        .HasColumnName("email");
 
                     b.HasKey("Id")
                         .HasName("usuario_pk");
@@ -434,17 +435,21 @@ namespace PadocaGestor.Infrastructure.Migrations
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.UsuarioCliente", b =>
                 {
                     b.Property<long>("IdCliente")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("cliente_id");
 
                     b.Property<string>("IdUsuario")
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("id_usuario");
 
                     b.Property<bool?>("Ativo")
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasColumnName("ativo");
 
                     b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp")
+                        .HasColumnName("criado_em");
 
                     b.HasKey("IdCliente", "IdUsuario")
                         .HasName("usuario_cliente_pk");
