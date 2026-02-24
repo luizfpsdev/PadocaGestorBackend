@@ -24,8 +24,8 @@ namespace PadocaGestor.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<string>> Get()
         {
-            await _usuarioClienteService.CriarUsuarioClienteAsync(_usuarioAtual.Id, _usuarioAtual.Email!,
-                _usuarioAtual.Nome!);
+            await _usuarioClienteService.CriarUsuarioClienteAsync(_usuarioAtual.Id, _usuarioAtual.Email,
+                _usuarioAtual.Nome);
 
             _logger.LogDebug(_usuarioAtual.ToString());
 
