@@ -11,11 +11,13 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
 
             builder.ToTable("cliente");
 
-            builder.Property(e => e.Id).UseIdentityAlwaysColumn();
+            builder.Property(e => e.Id).UseIdentityAlwaysColumn()
+                .HasColumnName("id_cliente");
             builder.Property(e => e.CriadoEm).HasColumnName("criado_em")
                 .HasColumnType("timestamp with time zone");
             builder.Property(e => e.Nome).HasMaxLength(200)
                 .HasColumnName("nome");
+            builder.Property(e => e.Status).HasColumnName("status");
         }
     }
 }

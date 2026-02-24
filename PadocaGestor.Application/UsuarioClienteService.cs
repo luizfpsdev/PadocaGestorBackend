@@ -43,6 +43,7 @@ public class UsuarioClienteService : IUsuarioClienteService
                 Usuario = new Usuario
                 {
                     Id =  usuarioId.ToString()!,
+                    
                     Ativo = true,
                     CriadoEm = DateTime.UtcNow,
                     Email = email,

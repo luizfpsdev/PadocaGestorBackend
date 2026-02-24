@@ -26,8 +26,7 @@ namespace PadocaGestor.Api.Controllers
             
             await _usuarioClienteService.CriarUsuarioClienteAsync(usuario.Id,usuario.Email!,usuario.Nome!);
             
-            
-            return Ok(usuario);
+            return Ok();
         }
     }
 }
