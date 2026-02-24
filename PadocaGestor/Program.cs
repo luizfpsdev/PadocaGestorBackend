@@ -3,8 +3,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using PadocaGestor.Api;
 using PadocaGestor.Application;
 using PadocaGestor.Application.Abstractions;
-using PadocaGestor.Application.Abstrations;
-using PadocaGestor.Infrastructure;
 using PadocaGestor.Infrastructure.Database;
 using Scalar.AspNetCore;
 

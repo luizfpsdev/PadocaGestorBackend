@@ -1,26 +1,27 @@
 using System.Security.Claims;
-using PadocaGestor.Application.Abstrations;
-using PadocaGestor.Domain;
+using PadocaGestor.Application.Abstractions;
 
 namespace PadocaGestor.Api;
 
 public class UsuarioAtual : IUsuarioAtual
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private static IHttpContextAccessor? _httpContextAccessor;
 
     public UsuarioAtual(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public UsuarioLogado ObterUsuario()
+
+    public override string ToString()
     {
-        return new UsuarioLogado
-        {
-            Id = Guid.Parse(_httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value!),
-            Email = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value!,
-            Nome = _httpContextAccessor.HttpContext?.User?.FindFirst("name")?.Value
-            
-        };
+        return $"id:{Id}, email:{Email}, nome:{Nome}";
     }
+
+    public Guid? Id =>
+        Guid.Parse(_httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+    public string Email => _httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value!;
+
+    public string Nome => _httpContextAccessor?.HttpContext?.User?.FindFirst("name")?.Value!;
 }

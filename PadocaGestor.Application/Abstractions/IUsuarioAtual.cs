@@ -1,8 +1,9 @@
-using PadocaGestor.Domain;
-
-namespace PadocaGestor.Application.Abstrations;
+namespace PadocaGestor.Application.Abstractions;
 
 public interface IUsuarioAtual
 {
-    public UsuarioLogado ObterUsuario();
+    string ToString();
+    Guid? Id {get; }
+    string Email {get; }
+    string Nome {get; }
 }

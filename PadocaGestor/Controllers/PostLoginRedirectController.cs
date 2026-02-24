@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PadocaGestor.Application.Abstractions;
-using PadocaGestor.Application.Abstrations;
 
 namespace PadocaGestor.Api.Controllers
 {
@@ -12,20 +11,24 @@ namespace PadocaGestor.Api.Controllers
     {
         private readonly IUsuarioAtual _usuarioAtual;
         private readonly IUsuarioClienteService _usuarioClienteService;
+        private readonly ILogger<PostLoginRedirectController> _logger;
 
-        public PostLoginRedirectController(IUsuarioAtual usuarioAtual,IUsuarioClienteService usuarioClienteService)
+        public PostLoginRedirectController(IUsuarioAtual usuarioAtual, IUsuarioClienteService usuarioClienteService,
+            ILogger<PostLoginRedirectController> logger)
         {
             _usuarioAtual = usuarioAtual;
             _usuarioClienteService = usuarioClienteService;
+            _logger = logger;
         }
-        
+
         [HttpGet]
         public async Task<ActionResult<string>> Get()
         {
-            var usuario = _usuarioAtual.ObterUsuario();
-            
-            await _usuarioClienteService.CriarUsuarioClienteAsync(usuario.Id,usuario.Email!,usuario.Nome!);
-            
+            await _usuarioClienteService.CriarUsuarioClienteAsync(_usuarioAtual.Id, _usuarioAtual.Email!,
+                _usuarioAtual.Nome!);
+
+            _logger.LogDebug(_usuarioAtual.ToString());
+
             return Ok();
         }
     }
