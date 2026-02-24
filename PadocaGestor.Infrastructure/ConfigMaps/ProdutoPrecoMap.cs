@@ -15,10 +15,10 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id_produto_preco");
             builder.Property(e => e.DataFim)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp")
                 .HasColumnName("data_fim");
             builder.Property(e => e.DataInicio)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp")
                 .HasColumnName("data_inicio");
             builder.Property(e => e.IdFornecedor).HasColumnName("id_fornecedor");
             builder.Property(e => e.IdProdutoProduto).HasColumnName("id_produto_produto");

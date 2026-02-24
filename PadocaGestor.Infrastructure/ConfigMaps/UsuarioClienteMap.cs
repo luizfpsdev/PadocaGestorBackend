@@ -13,8 +13,18 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
 
             builder.HasIndex(e => e.IdUsuario, "usuario_cliente_uq").IsUnique();
 
-            builder.Property(e => e.IdUsuario).HasMaxLength(50);
-            builder.Property(e => e.CriadoEm).HasColumnType("timestamp without time zone");
+            builder.Property(e => e.IdUsuario)
+                .HasColumnName("id_usuario")
+                .HasMaxLength(50);
+            
+            builder.Property(e => e.Ativo).HasColumnName("ativo");
+
+            builder.Property(e => e.IdCliente)
+                .HasColumnName("cliente_id");
+            
+            builder.Property(e => e.CriadoEm).
+                HasColumnName("criado_em")
+                .HasColumnType("timestamp with time zone");
 
             builder.HasOne(d => d.Cliente).WithMany(p => p.UsuarioClientes)
                 .HasForeignKey(d => d.IdCliente)

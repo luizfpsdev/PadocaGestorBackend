@@ -15,7 +15,7 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
             builder.Property(e => e.DataCriacao)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp")
                 .HasColumnName("data_criacao");
             builder.Property(e => e.IdEmpresa)
                 .ValueGeneratedOnAdd()

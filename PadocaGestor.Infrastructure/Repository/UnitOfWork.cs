@@ -22,6 +22,8 @@ namespace PadocaGestor.Infrastructure.Repository
         private Repository<Receita>? _receitaRepository= null;
         private Repository<ReceitasVersao>? _receitasVersaoRepository= null;
         private Repository<UsuarioCliente>? _usuarioClienteRepository= null;
+        private Repository<Usuario>? _usuarioRepository= null;
+        private Repository<RolesUsuario>? _rolesUsuarioRepository= null;
 
         public Repository<Fornecedor> FornecedorRepository => _fornecedorRepository ?? new Repository<Fornecedor>(Context);
 
@@ -39,6 +41,8 @@ namespace PadocaGestor.Infrastructure.Repository
 
         public Repository<ReceitasVersao> ReceitasVersaoRepository => _receitasVersaoRepository ?? new Repository<ReceitasVersao>(Context);
         public Repository<UsuarioCliente> UsuarioClienteRepository => _usuarioClienteRepository ?? new Repository<UsuarioCliente>(Context);
+        public Repository<Usuario> UsuarioRepository => _usuarioRepository ?? new Repository<Usuario>(Context);
+        public Repository<RolesUsuario> RolesUsuarioRepository => _rolesUsuarioRepository ?? new Repository<RolesUsuario>(Context);
 
         public async Task CommitAsync() => await Context.SaveChangesAsync();
 

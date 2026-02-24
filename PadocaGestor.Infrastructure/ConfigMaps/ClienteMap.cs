@@ -12,8 +12,10 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.ToTable("cliente");
 
             builder.Property(e => e.Id).UseIdentityAlwaysColumn();
-            builder.Property(e => e.CriadoEm).HasColumnType("timestamp without time zone");
-            builder.Property(e => e.Nome).HasMaxLength(200);
+            builder.Property(e => e.CriadoEm).HasColumnName("criado_em")
+                .HasColumnType("timestamp with time zone");
+            builder.Property(e => e.Nome).HasMaxLength(200)
+                .HasColumnName("nome");
         }
     }
 }

@@ -18,10 +18,11 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e => e.Ativo).HasColumnName("ativo");
             
             builder.Property(e => e.CriadoEm)
-                 .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp with time zone")
                 .HasColumnName("criado_em");
 
             builder.Property(e => e.Email)
+                .HasColumnName("email")
                 .HasColumnType("email");
 
             builder.HasMany<RolesUsuario>(e => e.RolesUsuario);

@@ -49,9 +49,9 @@ namespace PadocaGestor.Infrastructure.Repository
                 return dbSet.Find(id);
             }
 
-            public virtual void Insert(TEntity entity)
+            public  virtual async Task InsertAsync(TEntity entity)
             {
-                dbSet.Add(entity);
+                await dbSet.AddAsync(entity);
             }
 
             public virtual void Delete(object id)

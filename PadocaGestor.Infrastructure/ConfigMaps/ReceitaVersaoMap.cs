@@ -19,7 +19,7 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .HasColumnName("alterado_por");
             builder.Property(e => e.Ativo).HasColumnName("ativo");
             builder.Property(e => e.DataVersao)
-                .HasColumnType("timestamp without time zone")
+                .HasColumnType("timestamp")
                 .HasColumnName("data_versao");
             builder.Property(e => e.IdReceitas).HasColumnName("id_receitas");
 
