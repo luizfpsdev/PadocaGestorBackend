@@ -4,8 +4,6 @@ public partial class ProdutoPreco
 {
     public long IdProdutoPreco { get; set; }
 
-    public List<decimal> Preco { get; set; } = null!;
-
     public DateTime DataInicio { get; set; }
 
     public DateTime? DataFim { get; set; }
@@ -15,6 +13,8 @@ public partial class ProdutoPreco
     public long? IdProdutoProduto { get; set; }
     
     public long IdCliente { get; set; }
+    
+    public decimal Rendimento { get; set; }
 
     public virtual Fornecedor IdFornecedorNavigation { get; set; } = null!;
 
