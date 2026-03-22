@@ -20,7 +20,7 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e => e.IdIngrediente).HasColumnName("id_ingrediente");
             builder.Property(e => e.Nome).HasColumnName("nome");
             builder.Property(e=>e.TipoPrecificacao).HasColumnName("tipo_precificacao");
-            builder.Property(e => e.Preco).HasColumnName("preco");
+            builder.Property(e => e.PrecoVenda).HasColumnName("preco");
             builder.Property(e=>e.Markup).HasColumnName("markup");
             
             builder.HasOne(d => d.IdIngredienteNavigation).WithMany(p => p.Produtos)

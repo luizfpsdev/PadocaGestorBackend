@@ -14,7 +14,7 @@ public partial class Produto
     
     public int TipoPrecificacao { get; set; }
     
-    public decimal Preco { get; set; }
+    public decimal PrecoVenda { get; set; }
     public decimal Markup { get; set; }
 
     public virtual Ingrediente IdIngredienteNavigation { get; set; } = null!;
