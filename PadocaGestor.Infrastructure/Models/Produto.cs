@@ -7,14 +7,12 @@ public partial class Produto
     public long IdIngrediente { get; set; }
 
     public string? Descricao { get; set; }
-
-    public long? IdMarca { get; set; }
     
+    public string? Nome { get; set; }
+
     public long IdCliente { get; set; }
 
     public virtual Ingrediente IdIngredienteNavigation { get; set; } = null!;
-
-    public virtual Marca? IdMarcaNavigation { get; set; }
 
     public virtual ICollection<ProdutoPreco> ProdutoPrecos { get; set; } = new List<ProdutoPreco>();
 

@@ -18,17 +18,12 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
                 .HasMaxLength(200)
                 .HasColumnName("descricao");
             builder.Property(e => e.IdIngrediente).HasColumnName("id_ingrediente");
-            builder.Property(e => e.IdMarca).HasColumnName("id_marca");
 
             builder.HasOne(d => d.IdIngredienteNavigation).WithMany(p => p.Produtos)
             .HasForeignKey(d => d.IdIngrediente)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("id_ingrediente_foreign_key");
 
-            builder.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Produtos)
-                .HasForeignKey(d => d.IdMarca)
-                .HasConstraintName("id_marca_foreign_key");
-            
             builder.Property(e => e.IdCliente)
                 .HasColumnName("client_id");
         }

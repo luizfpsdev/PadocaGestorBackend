@@ -17,8 +17,6 @@ public partial class PadocaContext : DbContext
 
     public virtual DbSet<Ingrediente> Ingredientes { get; set; }
 
-    public virtual DbSet<Marca> Marcas { get; set; }
-
     public virtual DbSet<Produto> Produtos { get; set; }
 
     public virtual DbSet<ProdutoPreco> ProdutoPrecos { get; set; }
@@ -29,8 +27,6 @@ public partial class PadocaContext : DbContext
 
     public virtual DbSet<ReceitasVersao> ReceitasVersaos { get; set; }
     
-    public virtual DbSet<RolesUsuario> RolesUsuarios { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(PadocaContext).Assembly);
