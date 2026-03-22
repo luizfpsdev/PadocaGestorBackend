@@ -11,6 +11,11 @@ public partial class Produto
     public string? Nome { get; set; }
 
     public long IdCliente { get; set; }
+    
+    public int TipoPrecificacao { get; set; }
+    
+    public decimal Preco { get; set; }
+    public decimal Markup { get; set; }
 
     public virtual Ingrediente IdIngredienteNavigation { get; set; } = null!;
 
