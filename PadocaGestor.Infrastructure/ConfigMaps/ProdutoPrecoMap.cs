@@ -26,6 +26,10 @@ namespace PadocaGestor.Infrastructure.ConfigMaps
             builder.Property(e=>e.Rendimento).HasColumnName("rendimento")
                 .HasColumnType("numeric(10,4)")
                 .HasColumnName("rendimento");
+            
+            builder.Property(e=>e.Preco).HasColumnName("preco")
+                .HasColumnType("numeric(10,4)")
+                .HasColumnName("preco");
 
             builder.HasOne(d => d.IdFornecedorNavigation).WithMany(p => p.ProdutoPrecos)
                 .HasForeignKey(d => d.IdFornecedor)

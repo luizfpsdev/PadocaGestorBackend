@@ -5,6 +5,8 @@ public partial class ProdutoPreco
     public long IdProdutoPreco { get; set; }
 
     public DateTime DataInicio { get; set; }
+    
+    public decimal Preco { get; set; }
 
     public DateTime? DataFim { get; set; }
 
