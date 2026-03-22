@@ -17,15 +17,15 @@ namespace PadocaGestor.Infrastructure.Migrations
                 name: "cliente",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id_cliente = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
-                    Nome = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Status = table.Column<int>(type: "integer", nullable: false),
+                    nome = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    status = table.Column<int>(type: "integer", nullable: false),
                     criado_em = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("cliente_pk", x => x.Id);
+                    table.PrimaryKey("cliente_pk", x => x.id_cliente);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,21 +78,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "marca",
-                columns: table => new
-                {
-                    id_marca = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
-                    nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    ativo = table.Column<bool>(type: "boolean", nullable: false),
-                    client_id = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("marca_pk", x => x.id_marca);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "receitas",
                 columns: table => new
                 {
@@ -112,30 +97,17 @@ namespace PadocaGestor.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "roles",
+                name: "Usuario",
                 columns: table => new
                 {
-                    id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Role = table.Column<string>(type: "role", nullable: false)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Ativo = table.Column<bool>(type: "boolean", nullable: false),
+                    CriadoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_roles", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "usuario",
-                columns: table => new
-                {
-                    id = table.Column<string>(type: "text", nullable: false),
-                    ativo = table.Column<bool>(type: "boolean", nullable: false),
-                    criado_em = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    email = table.Column<string>(type: "email", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("usuario_pk", x => x.id);
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,7 +118,7 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
                     id_ingrediente = table.Column<long>(type: "bigint", nullable: false),
                     descricao = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    id_marca = table.Column<long>(type: "bigint", nullable: true),
+                    Nome = table.Column<string>(type: "text", nullable: true),
                     client_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -157,11 +129,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                         column: x => x.id_ingrediente,
                         principalTable: "ingrediente",
                         principalColumn: "id_ingrediente");
-                    table.ForeignKey(
-                        name: "id_marca_foreign_key",
-                        column: x => x.id_marca,
-                        principalTable: "marca",
-                        principalColumn: "id_marca");
                 });
 
             migrationBuilder.CreateTable(
@@ -187,30 +154,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "roles_usuario",
-                columns: table => new
-                {
-                    id_usuario = table.Column<string>(type: "text", nullable: false),
-                    id_roles = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_roles_usuario", x => new { x.id_usuario, x.id_roles });
-                    table.ForeignKey(
-                        name: "FK_roles_usuario_roles_id_roles",
-                        column: x => x.id_roles,
-                        principalTable: "roles",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_roles_usuario_usuario_id_usuario",
-                        column: x => x.id_usuario,
-                        principalTable: "usuario",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "usuario_cliente",
                 columns: table => new
                 {
@@ -226,13 +169,13 @@ namespace PadocaGestor.Infrastructure.Migrations
                         name: "cliente_fk",
                         column: x => x.cliente_id,
                         principalTable: "cliente",
-                        principalColumn: "Id",
+                        principalColumn: "id_cliente",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "usuario_fk",
                         column: x => x.id_usuario,
-                        principalTable: "usuario",
-                        principalColumn: "id",
+                        principalTable: "Usuario",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
 
@@ -296,11 +239,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                 column: "id_ingrediente");
 
             migrationBuilder.CreateIndex(
-                name: "IX_produto_id_marca",
-                table: "produto",
-                column: "id_marca");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_produto_preco_id_fornecedor",
                 table: "produto_preco",
                 column: "id_fornecedor");
@@ -314,11 +252,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                 name: "IX_receitas_versao_id_receitas",
                 table: "receitas_versao",
                 column: "id_receitas");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_roles_usuario_id_roles",
-                table: "roles_usuario",
-                column: "id_roles");
 
             migrationBuilder.CreateIndex(
                 name: "usuario_cliente_uq",
@@ -340,9 +273,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                 name: "receita_versao_ingredientes");
 
             migrationBuilder.DropTable(
-                name: "roles_usuario");
-
-            migrationBuilder.DropTable(
                 name: "usuario_cliente");
 
             migrationBuilder.DropTable(
@@ -355,19 +285,13 @@ namespace PadocaGestor.Infrastructure.Migrations
                 name: "receitas_versao");
 
             migrationBuilder.DropTable(
-                name: "roles");
-
-            migrationBuilder.DropTable(
                 name: "cliente");
 
             migrationBuilder.DropTable(
-                name: "usuario");
+                name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "ingrediente");
-
-            migrationBuilder.DropTable(
-                name: "marca");
 
             migrationBuilder.DropTable(
                 name: "receitas");

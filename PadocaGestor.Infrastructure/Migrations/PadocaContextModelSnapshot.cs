@@ -27,7 +27,8 @@ namespace PadocaGestor.Infrastructure.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("id_cliente");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id"));
 
@@ -38,10 +39,12 @@ namespace PadocaGestor.Infrastructure.Migrations
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("nome");
 
                     b.Property<int>("Status")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("status");
 
                     b.HasKey("Id")
                         .HasName("cliente_pk");
@@ -153,35 +156,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                     b.ToTable("ingrediente", (string)null);
                 });
 
-            modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Marca", b =>
-                {
-                    b.Property<long>("IdMarca")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id_marca");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("IdMarca"));
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("boolean")
-                        .HasColumnName("ativo");
-
-                    b.Property<long>("IdCliente")
-                        .HasColumnType("bigint")
-                        .HasColumnName("client_id");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("nome");
-
-                    b.HasKey("IdMarca")
-                        .HasName("marca_pk");
-
-                    b.ToTable("marca", (string)null);
-                });
-
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Produto", b =>
                 {
                     b.Property<long>("IdProduto")
@@ -204,16 +178,13 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("id_ingrediente");
 
-                    b.Property<long?>("IdMarca")
-                        .HasColumnType("bigint")
-                        .HasColumnName("id_marca");
+                    b.Property<string>("Nome")
+                        .HasColumnType("text");
 
                     b.HasKey("IdProduto")
                         .HasName("produto_pk");
 
                     b.HasIndex("IdIngrediente");
-
-                    b.HasIndex("IdMarca");
 
                     b.ToTable("produto", (string)null);
                 });
@@ -370,64 +341,24 @@ namespace PadocaGestor.Infrastructure.Migrations
                     b.ToTable("receitas_versao", (string)null);
                 });
 
-            modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Roles", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("role");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("roles", (string)null);
-                });
-
-            modelBuilder.Entity("PadocaGestor.Infrastructure.Models.RolesUsuario", b =>
-                {
-                    b.Property<string>("UsuarioId")
-                        .HasColumnType("text")
-                        .HasColumnName("id_usuario");
-
-                    b.Property<long>("RolesId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("id_roles");
-
-                    b.HasKey("UsuarioId", "RolesId");
-
-                    b.HasIndex("RolesId");
-
-                    b.ToTable("roles_usuario", (string)null);
-                });
-
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Usuario", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("text")
-                        .HasColumnName("id");
+                        .HasColumnType("text");
 
                     b.Property<bool>("Ativo")
-                        .HasColumnType("boolean")
-                        .HasColumnName("ativo");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("CriadoEm")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("criado_em");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("email")
-                        .HasColumnName("email");
+                        .HasColumnType("text");
 
-                    b.HasKey("Id")
-                        .HasName("usuario_pk");
+                    b.HasKey("Id");
 
-                    b.ToTable("usuario", (string)null);
+                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.UsuarioCliente", b =>
@@ -466,14 +397,7 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .IsRequired()
                         .HasConstraintName("id_ingrediente_foreign_key");
 
-                    b.HasOne("PadocaGestor.Infrastructure.Models.Marca", "IdMarcaNavigation")
-                        .WithMany("Produtos")
-                        .HasForeignKey("IdMarca")
-                        .HasConstraintName("id_marca_foreign_key");
-
                     b.Navigation("IdIngredienteNavigation");
-
-                    b.Navigation("IdMarcaNavigation");
                 });
 
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.ProdutoPreco", b =>
@@ -525,21 +449,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                     b.Navigation("IdReceitasNavigation");
                 });
 
-            modelBuilder.Entity("PadocaGestor.Infrastructure.Models.RolesUsuario", b =>
-                {
-                    b.HasOne("PadocaGestor.Infrastructure.Models.Roles", null)
-                        .WithMany("RolesUsuarios")
-                        .HasForeignKey("RolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PadocaGestor.Infrastructure.Models.Usuario", null)
-                        .WithMany("RolesUsuario")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.UsuarioCliente", b =>
                 {
                     b.HasOne("PadocaGestor.Infrastructure.Models.Cliente", "Cliente")
@@ -576,11 +485,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                     b.Navigation("Produtos");
                 });
 
-            modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Marca", b =>
-                {
-                    b.Navigation("Produtos");
-                });
-
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Produto", b =>
                 {
                     b.Navigation("ProdutoPrecos");
@@ -598,15 +502,8 @@ namespace PadocaGestor.Infrastructure.Migrations
                     b.Navigation("ReceitaVersaoIngredientes");
                 });
 
-            modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Roles", b =>
-                {
-                    b.Navigation("RolesUsuarios");
-                });
-
             modelBuilder.Entity("PadocaGestor.Infrastructure.Models.Usuario", b =>
                 {
-                    b.Navigation("RolesUsuario");
-
                     b.Navigation("UsuarioCliente");
                 });
 #pragma warning restore 612, 618
