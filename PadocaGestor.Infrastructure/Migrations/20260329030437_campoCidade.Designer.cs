@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PadocaGestor.Infrastructure.Database;
@@ -11,9 +12,11 @@ using PadocaGestor.Infrastructure.Database;
 namespace PadocaGestor.Infrastructure.Migrations
 {
     [DbContext(typeof(PadocaContext))]
-    partial class PadocaContextModelSnapshot : ModelSnapshot
+    [Migration("20260329030437_campoCidade")]
+    partial class campoCidade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,10 +98,6 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)")
                         .HasColumnName("telefone");
-
-                    b.Property<string>("Uf")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("IdFornecedor")
                         .HasName("fornecedores_pk");

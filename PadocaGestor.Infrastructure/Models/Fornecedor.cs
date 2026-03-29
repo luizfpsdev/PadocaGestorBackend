@@ -13,6 +13,10 @@ public partial class Fornecedor
     public string? Observacao { get; set; }
 
     public string? Endereco { get; set; }
+    
+    public string Cidade { get; set; }
+    
+    public string Uf { get; set; }
 
     public string? Telefone { get; set; }
     
