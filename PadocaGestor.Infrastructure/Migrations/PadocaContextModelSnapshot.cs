@@ -73,6 +73,10 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasColumnType("character varying(15)")
                         .HasColumnName("cnpj");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Endereco")
                         .HasColumnType("character varying")
                         .HasColumnName("endereco");
@@ -269,6 +273,9 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasColumnType("timestamp")
                         .HasColumnName("data_criacao");
 
+                    b.Property<string>("Descricao")
+                        .HasColumnType("text");
+
                     b.Property<long>("IdCliente")
                         .HasColumnType("bigint")
                         .HasColumnName("client_id");
@@ -280,10 +287,16 @@ namespace PadocaGestor.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("IdEmpresa"));
 
+                    b.Property<decimal>("Markup")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("character varying")
                         .HasColumnName("nome");
+
+                    b.Property<decimal>("PrecoVenda")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("Preparo")
                         .HasColumnType("character varying")
@@ -293,6 +306,9 @@ namespace PadocaGestor.Infrastructure.Migrations
                         .HasPrecision(10, 4)
                         .HasColumnType("numeric(10,4)")
                         .HasColumnName("rendimento");
+
+                    b.Property<int>("TipoPrecificacao")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id")
                         .HasName("receitas_pk");
