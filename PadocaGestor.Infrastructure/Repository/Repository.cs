@@ -17,8 +17,7 @@ namespace PadocaGestor.Infrastructure.Repository
                 this.dbSet = context.Set<TEntity>();
             }
 
-            public virtual Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null,
-                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            public virtual IQueryable<TEntity> Query(Expression<Func<TEntity, bool>>? filter = null,
                 string includeProperties = "")
             {
                 IQueryable<TEntity> query = dbSet;
@@ -34,6 +33,15 @@ namespace PadocaGestor.Infrastructure.Repository
                     query = query.Include(includeProperty);
                 }
 
+                return query;
+            }
+
+            public virtual Task<List<TEntity>> Get(Expression<Func<TEntity, bool>>? filter = null,
+                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                string includeProperties = "")
+            {
+                IQueryable<TEntity> query = Query(filter, includeProperties);
+
                 if (orderBy != null)
                 {
                     return orderBy(query).ToListAsync();
@@ -44,7 +52,7 @@ namespace PadocaGestor.Infrastructure.Repository
                 }
             }
 
-            public virtual TEntity GetByID(object id)
+            public virtual TEntity? GetByID(object id)
             {
                 return dbSet.Find(id);
             }
@@ -56,7 +64,12 @@ namespace PadocaGestor.Infrastructure.Repository
 
             public virtual void Delete(object id)
             {
-                TEntity entityToDelete = dbSet.Find(id);
+                TEntity? entityToDelete = dbSet.Find(id);
+                if (entityToDelete is null)
+                {
+                    return;
+                }
+
                 Delete(entityToDelete);
             }
 
