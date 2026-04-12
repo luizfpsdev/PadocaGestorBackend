@@ -70,6 +70,7 @@ namespace PadocaGestor.Api.Controllers
                 .Select(x => new
                 {
                     x.IdFornecedor,
+                    x.Contato,
                     x.Nome,
                     x.Cnpj,
                     x.Ativo,
